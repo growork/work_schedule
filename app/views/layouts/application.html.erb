@@ -1,23 +1,41 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>WorkSchedule</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>WorkSchedule</title>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-  </head>
+</head>
 
-  <body>
-
-  <% if user_signed_in? %>
-    <span>Здравствуйте, <%= current_user.email %></span>
-    <%= link_to 'Профиль', current_user %>
-    <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
-  <% else %>
-    <%= link_to 'Войти', new_user_session_path %> или <%= link_to 'Зарегистрироваться', new_user_registration_path %>
-  <% end %>
+<body>
 
 
-    <%= yield %>
-  </body>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-6 text-left">
+      <%= link_to 'Главная', root_path %>
+    </div>
+
+    <div class="col-6 text-right">
+      <% if user_signed_in? %>
+        <% if current_user.name? %>
+          <span>Здравствуйте, <%= current_user.name %></span>
+        <% else %>
+          <span>Здравствуйте, <%= current_user.email %></span>
+        <% end %>
+
+
+        <%= link_to 'Профиль', current_user %>
+        <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
+      <% else %>
+        <%= link_to 'Войти', new_user_session_path %> или <%= link_to 'Зарегистрироваться', new_user_registration_path %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+<%= yield %>
+</body>
 </html>
