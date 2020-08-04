@@ -11,31 +11,33 @@
 <body>
 
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-6 text-left">
-      <%= link_to 'Главная', root_path %>
+<nav class="navbar navbar-expand-lg">
+
+    <div class="col text-left">
+      <%= link_to 'Главная', root_path, class: 'navbar-brand' %>
     </div>
 
-    <div class="col-6 text-right">
+    <div class="col text-right">
       <% if user_signed_in? %>
-        <% if current_user.name? %>
-          <span>Здравствуйте, <%= current_user.name %></span>
-        <% else %>
-          <span>Здравствуйте, <%= current_user.email %></span>
-        <% end %>
 
-
-        <%= link_to 'Профиль', current_user %>
+        <span><%= link_to (current_user.name? ? current_user.name : current_user.email), current_user %></span>
         <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
+
       <% else %>
+
         <%= link_to 'Войти', new_user_session_path %> или <%= link_to 'Зарегистрироваться', new_user_registration_path %>
+
       <% end %>
     </div>
-  </div>
+</nav>
+
+<% if flash.any? %>
+  <div id="notice" class="alert alert-success"><%= notice %></div>
+<% end %>
+
+<div class="container">
+  <%= yield %>
 </div>
 
-
-<%= yield %>
 </body>
 </html>
