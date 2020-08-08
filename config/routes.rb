@@ -3,6 +3,6 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  resources :schedules, except: [:destroy]
+  resources :schedules
   resources :users, only: [:show, :edit, :update]
 end
