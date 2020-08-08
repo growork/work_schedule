@@ -11,6 +11,8 @@ gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5'
 
 gem 'devise'
+gem 'devise-i18n'
+gem 'russian'
 
 gem 'jquery-rails'
 

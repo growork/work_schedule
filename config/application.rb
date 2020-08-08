@@ -31,5 +31,9 @@ module WorkSchedule
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+
+    # Язык по умолчанию
+    config.i18n.default_locale = :ru
   end
 end
