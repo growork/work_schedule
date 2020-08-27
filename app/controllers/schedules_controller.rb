@@ -1,4 +1,5 @@
 class SchedulesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_schedule, only: [:show, :edit, :update]
 
   # GET /schedules
@@ -40,13 +41,13 @@ class SchedulesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_schedule
-      @schedule = Schedule.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_schedule
+    @schedule = Schedule.find(params[:id])
+  end
 
-    # Only allow a trusted parameter "white list" through.
-    def schedule_params
-      params.require(:schedule).permit(:note, :time_interval)
-    end
+  # Only allow a trusted parameter "white list" through.
+  def schedule_params
+    params.require(:schedule).permit(:note, :time_interval)
+  end
 end
