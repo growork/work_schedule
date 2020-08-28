@@ -1,0 +1,2 @@
+module LocalSectionsHelper
+end

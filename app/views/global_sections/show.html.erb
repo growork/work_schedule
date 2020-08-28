@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @global_section.title %>
+</p>
+
+<p>
+  <strong>Schedule:</strong>
+  <%= @global_section.schedule_id %>
+</p>
+
+<%= link_to 'Edit', edit_global_section_path(@global_section) %> |
+<%= link_to 'Back', global_sections_path %>
