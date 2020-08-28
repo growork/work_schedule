@@ -4,7 +4,7 @@ class GlobalSectionsController < ApplicationController
 
   # GET /global_sections
   def index
-    @global_sections = current_user.global_sections.all
+    @global_sections = GlobalSection.all
   end
 
   # GET /global_sections/1
