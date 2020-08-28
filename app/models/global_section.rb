@@ -1,4 +1,4 @@
 class GlobalSection < ApplicationRecord
-  belongs_to :schedule
+  belongs_to :user
   has_many :local_sections
 end

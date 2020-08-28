@@ -1,4 +1,5 @@
 class LocalSectionsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_local_section, only: [:show, :edit, :update, :destroy]
 
   # GET /local_sections

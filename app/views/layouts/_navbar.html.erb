@@ -1,0 +1,18 @@
+<nav class="navbar navbar-expand-lg bg-light">
+
+  <%= link_to 'Главная', root_path, class: 'navbar-brand' %>
+  <ul class="navbar-nav mr-auto">
+    <% if user_signed_in? %>
+      <li class="nav-item"><%= link_to 'Графики', schedules_path, class: 'nav-link' %></li>
+      <li class="nav-item"><%= link_to 'Сотрудники', employees_path, class: 'nav-link' %></li>
+      <li class="nav-item"><%= link_to 'Секции', 'global_sections#index', class: 'nav-link' %></li>
+    <% end %>
+  </ul>
+
+  <% if user_signed_in? %>
+    <%= link_to (current_user.name? ? current_user.name : current_user.email), current_user, class: 'nav-item nav-link' %>
+    <%= link_to 'Выйти', destroy_user_session_path, :method => :delete, class: 'nav-item nav-link' %>
+  <% else %>
+    <%= link_to 'Войти', new_user_session_path, class: 'nav-item nav-link' %> или <%= link_to 'Зарегистрироваться', new_user_registration_path, class: 'nav-item nav-link' %>
+  <% end %>
+</nav>

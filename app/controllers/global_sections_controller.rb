@@ -1,9 +1,10 @@
 class GlobalSectionsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_global_section, only: [:show, :edit, :update, :destroy]
 
   # GET /global_sections
   def index
-    @global_sections = GlobalSection.all
+    @global_sections = current_user.global_sections.all
   end
 
   # GET /global_sections/1

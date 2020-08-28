@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_28_112204) do
+ActiveRecord::Schema.define(version: 2020_08_28_191230) do
 
   create_table "days", force: :cascade do |t|
     t.integer "hours"
@@ -34,10 +34,8 @@ ActiveRecord::Schema.define(version: 2020_08_28_112204) do
 
   create_table "global_sections", force: :cascade do |t|
     t.string "title"
-    t.integer "schedule_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["schedule_id"], name: "index_global_sections_on_schedule_id"
   end
 
   create_table "local_sections", force: :cascade do |t|
@@ -74,7 +72,6 @@ ActiveRecord::Schema.define(version: 2020_08_28_112204) do
 
   add_foreign_key "days", "employees"
   add_foreign_key "employees", "local_sections"
-  add_foreign_key "global_sections", "schedules"
   add_foreign_key "local_sections", "gloabal_sections"
   add_foreign_key "schedules", "users"
 end
