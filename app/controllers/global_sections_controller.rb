@@ -11,30 +11,25 @@ class GlobalSectionsController < ApplicationController
   def show
   end
 
-  # GET /global_sections/new
-  def new
-    @global_section = GlobalSection.new
-  end
-
   # GET /global_sections/1/edit
   def edit
   end
 
   # POST /global_sections
   def create
-    @global_section = GlobalSection.new(global_section_params)
+    @new_global_section = GlobalSection.new(title: global_section_params[:title], user_id: current_user.id)
 
-    if @global_section.save
-      redirect_to @global_section, notice: 'Global section was successfully created.'
+    if @new_global_section.save
+      redirect_to settings_path, notice: 'Сохранено.'
     else
-      render :new
+      redirect_to :settings, alert: 'Что-то пошло не так...'
     end
   end
 
   # PATCH/PUT /global_sections/1
   def update
     if @global_section.update(global_section_params)
-      redirect_to @global_section, notice: 'Global section was successfully updated.'
+      redirect_to :settings, notice: 'Сохранено.'
     else
       render :edit
     end
@@ -43,7 +38,7 @@ class GlobalSectionsController < ApplicationController
   # DELETE /global_sections/1
   def destroy
     @global_section.destroy
-    redirect_to global_sections_url, notice: 'Global section was successfully destroyed.'
+    redirect_to :settings, notice: 'Секция удалена.'
   end
 
   private
@@ -54,6 +49,6 @@ class GlobalSectionsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def global_section_params
-      params.require(:global_section).permit(:title, :schedule_id)
+      params.require(:global_section).permit(:title)
     end
 end

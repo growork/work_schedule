@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
+  get 'settings', to: 'settings#index'
+
   resources :days
   resources :employees
   resources :local_sections

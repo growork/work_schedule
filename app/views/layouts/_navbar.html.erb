@@ -4,8 +4,7 @@
   <ul class="navbar-nav mr-auto">
     <% if user_signed_in? %>
       <li class="nav-item"><%= link_to 'Графики', schedules_path, class: 'nav-link' %></li>
-      <li class="nav-item"><%= link_to 'Сотрудники', employees_path, class: 'nav-link' %></li>
-      <li class="nav-item"><%= link_to 'Секции', 'global_sections#index', class: 'nav-link' %></li>
+      <li class="nav-item"><%= link_to 'Настройки', settings_path, class: 'nav-link' %></li>
     <% end %>
   </ul>
 

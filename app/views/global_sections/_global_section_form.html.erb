@@ -1,0 +1,8 @@
+<%= form_with model: @section do |f| %>
+
+  <%= f.label @section.title %>
+  <%= f.submit "Сохранить", :class => 'btn btn-outline-primary btn-sm' %>
+  <%= link_to 'удалить', @section, method: :delete, data: {confirm: 'Удалить?'} %>
+
+
+<% end %>

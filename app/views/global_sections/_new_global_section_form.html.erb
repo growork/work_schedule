@@ -1,0 +1,5 @@
+<%= form_with model: @new_global_section, local: true do |f| %>
+  <%= f.text_field :title %>
+  <%= f.submit "Создать", :class => 'btn btn-outline-primary btn-sm', user_id: 'current_user.id' %>
+
+<% end %>
