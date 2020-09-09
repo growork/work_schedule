@@ -1,5 +1,9 @@
-<%= form_with model: @section, local: true do |f| %>
-  <h3 class="float-left"><%= f.label @section.title %></h3>
-  <%= link_to 'Редактировать', edit_global_section_path(@section), id: ("edit_global_section_#{@section.id}"), remote: true %>
-  <%= link_to 'удалить', @section, method: :delete, data: {confirm: 'Удалить?'} %>
+<%= form_with model: @section, class: "row",local: true do |f| %>
+  <div id="global_section_<%= @section.id %>" class="col-10 float-left">
+    <h3><%= f.label @section.title %></h3>
+  </div>
+  <div class="col-2 float-right text-right">
+    <%= link_to image_tag('edit_icon.png', class: 'icon'), edit_global_section_path(@section), id: ("edit_global_section_#{@section.id}"), remote: true %>
+    <%= link_to image_tag('delete_icon.png', class: 'icon'), @section, method: :delete %>
+  </div>
 <% end %>

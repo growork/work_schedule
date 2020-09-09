@@ -4,16 +4,36 @@
 <p>Здесь Вы можете управлять секциями и сотрудниками</p>
 
 <% @global_sections.each do |section|%>
-  <div id="global_section_<%= section.id %>" class="d-table pt-2">
-  <% @section = section %>
-  <%= render 'global_sections/global_section_form' %>
-  </div>
-  <div class="pl-5">
-    asasfasf
+  <div class="row mb-2">
+    <div class="col-6 bg-light">
+      <% @section = section %>
+      <%= render 'global_sections/global_section_form' %>
+
+      <div class="row">
+        <div class="col-11">
+          <table class="table table-sm">
+            <thead>
+            <tr>
+              <th scope="col">Таб. №</th>
+              <th scope="col">ФИО</th>
+              <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @section.employees.each do |employee| %>
+              <% @employee = employee %>
+              <%= render 'employees/employee_form' %>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 
 <% end %>
+
 <div class="mt-5">
-<p>Добавить секцию</p>
-<%= render 'global_sections/new_global_section_form' %>
+  <p>Добавить секцию</p>
+  <%= render 'global_sections/new_global_section_form' %>
 </div>

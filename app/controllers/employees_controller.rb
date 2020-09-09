@@ -1,5 +1,6 @@
 class EmployeesController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_employee, only: [:update]
 
   # GET /employees
   def index
@@ -29,7 +30,7 @@ class EmployeesController < ApplicationController
   # PATCH/PUT /employees/1
   def update
     if @employee.update(employee_params)
-      redirect_to @employee, notice: 'Employee was successfully updated.'
+      redirect_to :settings, notice: 'Employee was successfully updated.'
     else
       render :edit
     end
@@ -42,11 +43,14 @@ class EmployeesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+  # Use callbacks to share common setup or constraints between actions.
 
+  def set_employee
+    @employee = Employee.find(params[:id])
+  end
 
-    # Only allow a trusted parameter "white list" through.
-    def employee_params
-      params.require(:employee).permit(:name, :service_number, :local_section_id)
-    end
+  # Only allow a trusted parameter "white list" through.
+  def employee_params
+    params.require(:employee).permit(:name, :service_number)
+  end
 end
