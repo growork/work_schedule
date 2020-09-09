@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_09_093459) do
+ActiveRecord::Schema.define(version: 2020_08_28_112204) do
 
   create_table "days", force: :cascade do |t|
     t.integer "hours"
-    t.string "time_interaval"
+    t.string "time_interval"
     t.datetime "date"
     t.string "type"
     t.integer "employee_id", null: false
@@ -26,37 +26,18 @@ ActiveRecord::Schema.define(version: 2020_09_09_093459) do
   create_table "employees", force: :cascade do |t|
     t.string "name"
     t.integer "service_number"
+    t.integer "global_section_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "local_section_id"
-    t.integer "global_section_id"
     t.index ["global_section_id"], name: "index_employees_on_global_section_id"
-    t.index ["local_section_id"], name: "index_employees_on_local_section_id"
   end
 
   create_table "global_sections", force: :cascade do |t|
     t.string "title"
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
     t.index ["user_id"], name: "index_global_sections_on_user_id"
-  end
-
-  create_table "local_sections", force: :cascade do |t|
-    t.string "title"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "global_section_id"
-    t.index ["global_section_id"], name: "index_local_sections_on_global_section_id"
-  end
-
-  create_table "schedules", force: :cascade do |t|
-    t.text "note"
-    t.string "time_interval"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
-    t.index ["user_id"], name: "index_schedules_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -76,8 +57,5 @@ ActiveRecord::Schema.define(version: 2020_09_09_093459) do
 
   add_foreign_key "days", "employees"
   add_foreign_key "employees", "global_sections"
-  add_foreign_key "employees", "local_sections"
   add_foreign_key "global_sections", "users"
-  add_foreign_key "local_sections", "global_sections"
-  add_foreign_key "schedules", "users"
 end
