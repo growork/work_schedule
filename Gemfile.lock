@@ -67,6 +67,13 @@ GEM
       sassc-rails (>= 2.0.0)
     builder (3.2.3)
     byebug (11.0.1)
+    coffee-rails (5.0.0)
+      coffee-script (>= 2.2.0)
+      railties (>= 5.2.0)
+    coffee-script (2.4.1)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.12.2)
     concurrent-ruby (1.1.5)
     crass (1.0.4)
     devise (4.7.2)
@@ -185,6 +192,8 @@ GEM
     tilt (2.0.10)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
+    uglifier (4.2.0)
+      execjs (>= 0.3.0, < 3)
     warden (1.2.8)
       rack (>= 2.0.6)
     webpacker (5.2.1)
@@ -204,6 +213,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   bootstrap (~> 4.5.0)
   byebug
+  coffee-rails
   devise
   devise-i18n
   jquery-rails
@@ -214,6 +224,7 @@ DEPENDENCIES
   sass-rails (~> 5)
   sprockets-rails
   sqlite3 (~> 1.4)
+  uglifier
   webpacker (~> 5.x)
 
 RUBY VERSION

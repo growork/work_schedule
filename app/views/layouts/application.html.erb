@@ -3,7 +3,13 @@
 <head>
   <title>WorkSchedule</title>
   <%= stylesheet_link_tag 'application', media: 'all' %>
-  <%= javascript_pack_tag 'application'%>
+
+  <!-- Если есть специальный .js файл для этого контроллера, то подключаем его -->
+  <% if File.exist?("#{Dir.pwd}/app/javascript/packs/#{controller_name}/#{controller_name}.js") %>
+    <%= javascript_pack_tag 'application', "#{controller_name}/#{controller_name}" %>
+  <% else %>
+    <%= javascript_pack_tag 'application' %>
+  <% end %>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 

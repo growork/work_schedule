@@ -1,8 +1,5 @@
-<%= form_with model: @section do |f| %>
-
-  <%= f.label @section.title %>
-  <%= f.submit "Сохранить", :class => 'btn btn-outline-primary btn-sm' %>
+<%= form_with model: @section, local: true do |f| %>
+  <h2 class="float-left"><%= f.label @section.title %></h2>
+  <%= link_to 'Редактировать', edit_global_section_path(@section), id: ("edit_global_section_#{@section.id}"), remote: true %>
   <%= link_to 'удалить', @section, method: :delete, data: {confirm: 'Удалить?'} %>
-
-
 <% end %>

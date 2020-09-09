@@ -10,7 +10,7 @@
 
   <% if user_signed_in? %>
     <%= link_to (current_user.name? ? current_user.name : current_user.email), current_user, class: 'nav-item nav-link' %>
-    <%= link_to 'Выйти', destroy_user_session_path, :method => :delete, class: 'nav-item nav-link' %>
+    <%= link_to 'Выйти', destroy_user_session_path, class: 'nav-item nav-link' %>
   <% else %>
     <%= link_to 'Войти', new_user_session_path, class: 'nav-item nav-link' %> или <%= link_to 'Зарегистрироваться', new_user_registration_path, class: 'nav-item nav-link' %>
   <% end %>

@@ -1,10 +1,16 @@
+
+
 <h1>Настройки</h1>
 <p>Здесь Вы можете управлять секциями и сотрудниками</p>
 
 <% @global_sections.each do |section|%>
+  <div id="global_section_<%= section.id %>" class="d-table pt-2">
   <% @section = section %>
   <%= render 'global_sections/global_section_form' %>
-
+  </div>
+  <div class="pl-5">
+    ntcnwdalwfk
+  </div>
 
 <% end %>
 

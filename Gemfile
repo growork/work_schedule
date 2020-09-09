@@ -14,12 +14,15 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'russian'
 
+
 gem 'jquery-rails'
 gem 'webpacker', '~> 5.x'
 
 gem 'bootstrap', '~> 4.5.0'
 
 gem 'sprockets-rails'
+gem 'uglifier'
+gem 'coffee-rails'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
