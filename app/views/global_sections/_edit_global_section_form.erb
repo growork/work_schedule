@@ -1,4 +1,17 @@
-<%= form_with(model: @global_section, local: true) do |f| %>
-  <%= f.text_field :title %>
-  <%= f.submit 'Сохранить' %>
-<% end %>
+<div class="col-12 mt-1 mb-1">
+  <%= form_with model: @global_section, local: true do |f| %>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <%= f.label @global_section.title, class: "input-group-text" %>
+      </div>
+
+      <%= f.text_field :title, class: "form-control", placeholder: "Название секции" %>
+
+      <div class="input-group-append">
+        <%= link_to "Удалить", @global_section, class: "btn btn-danger", method: :delete %>
+        <%= f.submit "Сохранить", :class => 'btn btn-primary' %>
+
+      </div>
+    </div>
+  <% end %>
+</div>

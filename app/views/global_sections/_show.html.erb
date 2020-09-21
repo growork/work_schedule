@@ -1,0 +1,7 @@
+  <div class="col-10 float-left">
+    <h3 class="font-weight-bold"><%= @section.title %></h3>
+  </div>
+  <div class="col-2 float-right text-right">
+    <%= link_to image_tag('edit_icon.png', class: 'icon'), edit_global_section_path(@section), id: ("edit_global_section_link_#{@section.id}"), "data-link-id" => "global-section-#{@section.id}", remote: true %>
+    <%= link_to image_tag('delete_icon.png', class: 'icon'), @section, method: :delete %>
+  </div>

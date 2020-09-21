@@ -1,0 +1,15 @@
+<%= form_with model: @new_employee, class: 'form-inline', local: true do |f| %>
+  <div class="input-group">
+    <td>
+      <%= f.text_field :service_number, class: "form-control", placeholder: "Табельный номер" %>
+    </td>
+
+    <td>
+      <%= f.text_field :name, class: "form-control", placeholder: "Имя сотрудника" %>
+    </td>
+
+    <td>
+        <%= f.submit "Добавить", :class => 'btn btn-primary' %>
+    </td>
+  </div>
+<% end %>

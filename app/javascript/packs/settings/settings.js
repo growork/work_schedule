@@ -1,17 +1,21 @@
 window.addEventListener("load", () => {
-    const links = document.querySelectorAll("a[id^=\"edit_global_section_\"]");
-    links.forEach((link) => {
+
+
+    let editGlobalSectionLinks = document.querySelectorAll("a[id^=\"edit_global_section_link_\"]");
+    editGlobalSectionLinks.forEach((editGlobalSectionLink) => ajaxFunc(editGlobalSectionLink));
+
+
+    function ajaxFunc(link) {
         link.addEventListener("ajax:success", (event) => {
             const [_data, _status, xhr] = event.detail;
-            const parent = link.parentElement;
-            for (let elem = 0; parent.childNodes.length; elem++) {
-                parent.childNodes[0].remove();
-            };
-            parent.insertAdjacentHTML("beforeend", xhr.responseText);
-        });
-        link.addEventListener("ajax:error", () => {
-            link.insertAdjacentHTML("beforeend", "<p>ERROR</p>");
-        });
-    });
 
+            let parentBlock = document.querySelector("[data-block-id='" + link.getAttribute("data-link-id") + "']");
+            parentBlock.innerHTML = xhr.responseText;
+        });
+
+        link.addEventListener("ajax:error", () => {
+            alert('Ошибка соединения!')
+        });
+    };
 });
+

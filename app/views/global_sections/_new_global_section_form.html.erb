@@ -1,5 +1,13 @@
-<%= form_with model: @new_global_section, local: true do |f| %>
-  <%= f.text_field :title %>
-  <%= f.submit "Добавить", :class => 'btn btn-outline-primary', user_id: 'current_user.id' %>
+<%= form_with model: @new_global_section, class: 'form-inline', local: true do |f| %>
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <%= f.label "+", class: "input-group-text" %>
+    </div>
 
+    <%= f.text_field :title, class: "form-control", placeholder: "Название секции" %>
+
+    <div class="input-group-append">
+      <%= f.submit "Добавить", :class => 'btn btn-primary' %>
+    </div>
+  </div>
 <% end %>
