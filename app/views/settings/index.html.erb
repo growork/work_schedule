@@ -28,7 +28,7 @@
                 <%= render 'employees/employee_form' %>
               </tr>
             <% end %>
-            <% @new_employee = @section.employees.new %>
+            <% @new_employee = @section.employees.new(global_section_id: "#{@section.id}") %>
             <tr>
               <%= render 'employees/new_employee_form' %>
             </tr>

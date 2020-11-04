@@ -21,9 +21,9 @@ class EmployeesController < ApplicationController
     @employee = Employee.new(employee_params)
 
     if @employee.save
-      redirect_to @employee, notice: 'Employee was successfully created.'
+      redirect_to :settings, notice: 'Сотрудник успешно добавлен!'
     else
-      render :new
+      redirect_to :settings, alert: 'Ошибка'
     end
   end
 
@@ -51,6 +51,6 @@ class EmployeesController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def employee_params
-    params.require(:employee).permit(:name, :service_number)
+    params.require(:employee).permit(:name, :service_number, :global_section_id)
   end
 end
