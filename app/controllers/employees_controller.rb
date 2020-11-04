@@ -1,6 +1,6 @@
 class EmployeesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_employee, only: [:update]
+  before_action :set_employee, only: [:update, :destroy]
 
   # GET /employees
   def index
@@ -39,7 +39,7 @@ class EmployeesController < ApplicationController
   # DELETE /employees/1
   def destroy
     @employee.destroy
-    redirect_to employees_url, notice: 'Employee was successfully destroyed.'
+    redirect_to :settings, alert: 'Сотрудник удалён!'
   end
 
   private
