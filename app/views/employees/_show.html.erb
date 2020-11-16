@@ -7,6 +7,6 @@
     </td>
 
     <td class="text-right">
-      <%= link_to image_tag('edit_icon.png', class: 'icon'), edit_global_section_path(@employee), id: ("edit_employee_#{@employee.id}"), remote: true %>
+      <%= link_to image_tag('edit_icon.png', class: 'icon'), edit_employee_path(@employee), id: ("edit_employee_link_#{@employee.id}"), "data-link-id" => "employee-#{@employee.id}", remote: true %>
       <%= link_to image_tag('delete_icon.png', class: 'icon'), @employee, method: :delete %>
     </td>

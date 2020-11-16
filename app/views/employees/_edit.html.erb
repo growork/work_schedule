@@ -1,0 +1,13 @@
+<td colspan="3">
+  <%= form_with model: @employee, local: true do |f| %>
+    <div class="input-group">
+        <%= f.text_field :service_number, class: "form-control", placeholder: "Табельный номер" %>
+        <%= f.text_field :name, class: "form-control", placeholder: "Имя сотрудника" %>
+
+      <div class="input-group-append">
+        <%= f.submit "Сохранить", :class => 'btn btn-primary' %>
+        <%= link_to "Удалить", @employee, class: "btn btn-danger", method: :delete %>
+      </div>
+    </div>
+  <% end %>
+  </td>

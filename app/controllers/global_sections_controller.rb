@@ -5,7 +5,6 @@ class GlobalSectionsController < ApplicationController
 
   # GET /global_sections/1/edit
   def edit
-
     respond_to do |format|
       format.html { render partial: 'edit_global_section_form'}
     end

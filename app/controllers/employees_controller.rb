@@ -1,11 +1,6 @@
 class EmployeesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_employee, only: [:update, :destroy]
-
-  # GET /employees
-  def index
-    @employees = Employee.all
-  end
+  before_action :set_employee, only: [:edit, :update, :destroy]
 
   # GET /employees/new
   def new
@@ -14,6 +9,9 @@ class EmployeesController < ApplicationController
 
   # GET /employees/1/edit
   def edit
+    respond_to do |format|
+      format.html { render partial: 'edit'}
+    end
   end
 
   # POST /employees
@@ -30,9 +28,9 @@ class EmployeesController < ApplicationController
   # PATCH/PUT /employees/1
   def update
     if @employee.update(employee_params)
-      redirect_to :settings, notice: 'Employee was successfully updated.'
+      redirect_to :settings, notice: 'Информация обновлена!'
     else
-      render :edit
+      redirect_to :settings, alert: 'Что-то пошло не так!'
     end
   end
 
@@ -51,6 +49,6 @@ class EmployeesController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def employee_params
-    params.require(:employee).permit(:name, :service_number, :global_section_id)
+    params.require(:employee).permit(:name, :service_number, :global_section_id, :id)
   end
 end

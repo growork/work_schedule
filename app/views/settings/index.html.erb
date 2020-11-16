@@ -24,8 +24,8 @@
             <tbody>
             <% @section.employees.each do |employee| %>
               <% @employee = employee %>
-              <tr id="<%= @employee.id %>">
-                <%= render 'employees/employee_form' %>
+              <tr id="employee-<%= @employee.id %>" data-block-id="employee-<%= @employee.id %>">
+                <%= render 'employees/show' %>
               </tr>
             <% end %>
             <% @new_employee = @section.employees.new(global_section_id: "#{@section.id}") %>
