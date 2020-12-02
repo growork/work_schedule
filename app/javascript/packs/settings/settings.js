@@ -19,6 +19,6 @@ window.addEventListener("load", () => {
         link.addEventListener("ajax:error", () => {
             alert('Ошибка соединения!')
         });
-    };
+    }
 });
 

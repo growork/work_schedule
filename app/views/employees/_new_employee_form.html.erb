@@ -1,16 +1,12 @@
-<%= form_with model: @new_employee, id: "new-employee-form-#{@section.id}", class: 'form-inline', local: true do |f| %>
-  <%= f.hidden_field :global_section_id %>
-  <div class="input-group">
-    <td>
+<td colspan="6">
+  <%= form_with model: @new_employee, id: "new-employee-form-#{@section.id}", class: 'form-inline', local: true do |f| %>
+    <%= f.hidden_field :global_section_id %>
+    <div class="input-group">
       <%= f.text_field :service_number, class: "form-control", placeholder: "Табельный номер", form: "new-employee-form-#{@section.id}" %>
-    </td>
-
-    <td>
       <%= f.text_field :name, class: "form-control", placeholder: "Имя сотрудника", form: "new-employee-form-#{@section.id}" %>
-    </td>
-
-    <td>
+      <div class="input-group-append">
         <%= f.submit "Добавить", :class => 'btn btn-primary', form: "new-employee-form-#{@section.id}" %>
-    </td>
-  </div>
-<% end %>
+      </div>
+    </div>
+  <% end %>
+</td>

@@ -1,8 +1,15 @@
-<td colspan="3">
+<td colspan="6">
   <%= form_with model: @employee, local: true do |f| %>
     <div class="input-group">
-        <%= f.text_field :service_number, class: "form-control", placeholder: "Табельный номер" %>
-        <%= f.text_field :name, class: "form-control", placeholder: "Имя сотрудника" %>
+      <%= f.text_field :service_number, class: "form-control", placeholder: "Табельный номер" %>
+      <%= f.text_field :name, class: "form-control", placeholder: "Имя сотрудника" %>
+
+        У-<%= f.text_field :morning, class: "form-control", placeholder: "Утро" %>
+        В-<%= f.text_field :evening, class: "form-control", placeholder: "Вечер" %>
+        Д-<%= f.text_field :duty, class: "form-control", placeholder: "Дежурство" %>
+
+      <%= f.check_box :work_overtime %>
+      <%= f.check_box :independence %>
 
       <div class="input-group-append">
         <%= f.submit "Сохранить", :class => 'btn btn-primary' %>
@@ -10,4 +17,4 @@
       </div>
     </div>
   <% end %>
-  </td>
+</td>

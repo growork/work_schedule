@@ -6,6 +6,28 @@
       <%= @employee.name %>
     </td>
 
+    <td>
+      <text>| У-<%= @employee.morning %> |</text>
+      <text>В-<%= @employee.evening %> |</text>
+      <text>Д-<%= @employee.duty %> |</text>
+    </td>
+
+    <td>
+      <% if  @employee.work_overtime? %>
+        <text>да</text>
+      <% else %>
+        <text>нет</text>
+      <% end %>
+    </td>
+
+    <td>
+      <% if  @employee.independence %>
+        <text>да</text>
+      <% else %>
+        <text>нет</text>
+      <% end %>
+    </td>
+
     <td class="text-right">
       <%= link_to image_tag('edit_icon.png', class: 'icon'), edit_employee_path(@employee), id: ("edit_employee_link_#{@employee.id}"), "data-link-id" => "employee-#{@employee.id}", remote: true %>
       <%= link_to image_tag('delete_icon.png', class: 'icon'), @employee, method: :delete %>

@@ -6,7 +6,7 @@
 <% @global_sections.each do |section|%>
   <% @section = section %>
   <div class="row mb-3">
-    <div class="col-6 bg-light shadow rounded-lg border">
+    <div class="col-10 bg-light shadow rounded-lg border">
       <div id="global_section_<%= @section.id %>" data-block-id="global-section-<%= @section.id %>" class="row">
         <%= render 'global_sections/show' %>
       </div>
@@ -18,9 +18,13 @@
             <tr>
               <th scope="col">Таб. №</th>
               <th scope="col">ФИО</th>
+              <th scope="col">Приоритет смен</th>
+              <th scope="col">1+1</th>
+              <th scope="col">Доп</th>
               <th scope="col"></th>
             </tr>
             </thead>
+
             <tbody>
             <% @section.employees.each do |employee| %>
               <% @employee = employee %>
@@ -38,7 +42,6 @@
       </div>
     </div>
   </div>
-
 <% end %>
 
 <div class="mt-5">

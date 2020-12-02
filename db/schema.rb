@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_28_112204) do
+ActiveRecord::Schema.define(version: 2020_11_28_170029) do
 
   create_table "days", force: :cascade do |t|
     t.integer "hours"
@@ -29,6 +29,11 @@ ActiveRecord::Schema.define(version: 2020_08_28_112204) do
     t.integer "global_section_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "work_overtime"
+    t.boolean "independence"
+    t.integer "morning"
+    t.integer "evening"
+    t.integer "duty"
     t.index ["global_section_id"], name: "index_employees_on_global_section_id"
   end
 
