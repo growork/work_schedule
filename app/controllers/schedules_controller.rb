@@ -1,6 +1,5 @@
 class SchedulesController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_schedule, only: [:show, :edit, :update]
+  before_action :set_schedule, only: [:show, :edit, :update, :destroy]
 
   # GET /schedules
   def index
@@ -40,14 +39,20 @@ class SchedulesController < ApplicationController
     end
   end
 
-  private
-  # Use callbacks to share common setup or constraints between actions.
-  def set_schedule
-    @schedule = Schedule.find(params[:id])
+  # DELETE /schedules/1
+  def destroy
+    @schedule.destroy
+    redirect_to schedules_url, notice: 'Schedule was successfully destroyed.'
   end
 
-  # Only allow a trusted parameter "white list" through.
-  def schedule_params
-    params.require(:schedule).permit(:note, :time_interval)
-  end
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_schedule
+      @schedule = Schedule.find(params[:id])
+    end
+
+    # Only allow a trusted parameter "white list" through.
+    def schedule_params
+      params.require(:schedule).permit(:employees_id, :note_time_interval, :note_left, :note_center, :note_right, :date, :user_id)
+    end
 end

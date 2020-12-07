@@ -5,9 +5,9 @@ Rails.application.routes.draw do
 
   get 'settings', to: 'settings#index'
 
+  resources :schedules
   resources :days
   resources :employees
   resources :global_sections
-  resources :schedules
   resources :users, only: [:show, :edit, :update]
 end

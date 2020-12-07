@@ -11,6 +11,41 @@
     </div>
   <% end %>
 
+  <div class="field">
+    <%= form.label :employees_id %>
+    <%= form.text_area :employees_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :note_time_interval %>
+    <%= form.text_field :note_time_interval %>
+  </div>
+
+  <div class="field">
+    <%= form.label :note_left %>
+    <%= form.text_field :note_left %>
+  </div>
+
+  <div class="field">
+    <%= form.label :note_center %>
+    <%= form.text_field :note_center %>
+  </div>
+
+  <div class="field">
+    <%= form.label :note_right %>
+    <%= form.text_field :note_right %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.datetime_select :date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
