@@ -17,19 +17,19 @@
 
 <body>
 
+<div class="wrapper">
 
-<%= render 'layouts/navbar' %>
+  <%= render 'layouts/navbar' %>
 
 
-<% if flash.notice %>
-  <div id="notice" class="alert alert-success"><%= notice %></div>
-<% elsif flash.alert %>
-  <div id="alert" class="alert alert-danger"><%= alert %></div>
-<% end %>
+  <% if flash.notice %>
+    <div id="notice" class="alert alert-success"><%= notice %></div>
+  <% elsif flash.alert %>
+    <div id="alert" class="alert alert-danger"><%= alert %></div>
+  <% end %>
 
-<div class="container">
   <%= yield %>
-</div>
 
+</div>
 </body>
 </html>

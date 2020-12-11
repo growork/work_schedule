@@ -16,3 +16,9 @@
  *= require_tree .
  */
 @import "bootstrap";
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
