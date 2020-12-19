@@ -17,6 +17,10 @@ class SchedulesController < ApplicationController
   # GET /schedules/new
   def new
     @schedule = Schedule.new
+
+    respond_to do |format|
+      format.html { render partial: 'new'}
+    end
   end
 
   # GET /schedules/1/edit

@@ -13,7 +13,7 @@
   flex-flow: column nowrap;
   background-color: #dc112e;
   box-shadow: inset 0 0 15px 4px #FF6177,
-              0 0 1px 1px #FF6177;
+              0 0 4px 1px #FF6177;
 }
 
 .schedule-menu-header {
@@ -32,4 +32,9 @@
 
 .schedule-area {
   flex: 0 0 90%;
+  padding: 10px;
+}
+
+#new-schedule-link {
+  margin-top: 10px;
 }
