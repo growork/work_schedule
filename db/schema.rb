@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2020_12_07_154554) do
   end
 
   create_table "schedules", force: :cascade do |t|
-    t.text "employees_id"
+    t.text "employees_data"
     t.string "note_time_interval"
     t.string "note_left"
     t.string "note_center"

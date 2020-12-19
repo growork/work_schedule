@@ -1,7 +1,7 @@
 class CreateSchedules < ActiveRecord::Migration[6.0]
   def change
     create_table :schedules do |t|
-      t.text :employees_id
+      t.text :employees_data
       t.string :note_time_interval
       t.string :note_left
       t.string :note_center
