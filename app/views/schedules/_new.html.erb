@@ -1,7 +1,29 @@
-<h3>Новый график на <%= (Time.now + (60*60*24*31)).strftime('%m.%Y') %></h3>
+<h3>Новый график на <%= @schedule.date.strftime('%m.%Y') %></h3>
 
 <div class="schedule-area">
-  <div class="employee-area">
-    
-  </div>
+
+  <table class="schedule-table">
+    <% @sections.each do |section| %>
+      <tr>
+        <td rowspan="2">№</td>
+        <td><%= section.title %></td>
+        <td rowspan="2">Таб. №</td>
+        <% count_days_in_month.times do |day| %>
+          <td><%= Date.new(@schedule.date.year, @schedule.date.month, day + 1).strftime('%a') %></td>
+        <% end %>
+        <td colspan="2">Часы</td>
+        <td rowspan="2">Сумма</td>
+      </tr>
+      <tr>
+        <td>Ф.И.О.</td>
+        <% count_days_in_month.times do |day| %>
+          <td><%= day + 1 %></td>
+        <% end %>
+        <td>дневные</td>
+        <td>отпускные</td>
+      </tr>
+    <% end %>
+
+  </table>
+
 </div>

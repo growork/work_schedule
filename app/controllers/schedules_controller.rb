@@ -16,7 +16,8 @@ class SchedulesController < ApplicationController
 
   # GET /schedules/new
   def new
-    @schedule = Schedule.new
+    @schedule = Schedule.new(date: Date.today.next_month)
+    @sections = current_user.global_sections
 
     respond_to do |format|
       format.html { render partial: 'new'}
