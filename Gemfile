@@ -12,7 +12,7 @@ gem 'sass-rails', '~> 5'
 
 gem 'devise'
 gem 'devise-i18n'
-gem 'russian'
+gem 'russian', '~> 0.6.0'
 
 
 gem 'jquery-rails'

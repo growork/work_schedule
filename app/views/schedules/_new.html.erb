@@ -3,15 +3,16 @@
 <div class="schedule-area">
 
   <table class="schedule-table">
+    <% serial_number = 1 %>
     <% @sections.each do |section| %>
       <tr>
         <td rowspan="2">№</td>
-        <td><%= section.title %></td>
+        <td><%= label_tag nil, section.title %></td>
         <td rowspan="2">Таб. №</td>
         <% count_days_in_month.times do |day| %>
-          <td><%= Date.new(@schedule.date.year, @schedule.date.month, day + 1).strftime('%a') %></td>
+          <td><%= Russian.strftime(Date.new(@schedule.date.year, @schedule.date.month, day + 1), '%a') %></td>
         <% end %>
-        <td colspan="2">Часы</td>
+        <td colspan="2">Кол-во часов</td>
         <td rowspan="2">Сумма</td>
       </tr>
       <tr>
@@ -19,9 +20,24 @@
         <% count_days_in_month.times do |day| %>
           <td><%= day + 1 %></td>
         <% end %>
-        <td>дневные</td>
-        <td>отпускные</td>
+        <td>дневных</td>
+        <td>отпускных</td>
       </tr>
+
+      <% section.employees.each do |employee| %>
+        <tr>
+          <td><%= serial_number %></td>
+          <td><%= employee.name %></td>
+          <td><%= employee.service_number %></td>
+          <% count_days_in_month.times do |day| %>
+            <td><%= text_field_tag nil, nil, class: "day-input-field" %></td>
+          <% end %>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <% serial_number += 1 %>
+      <% end %>
     <% end %>
 
   </table>

@@ -39,6 +39,17 @@
   margin-top: 10px;
 }
 
-table tr td {
+.schedule-table {
+  font-size: 0.7em;
+}
+
+.schedule-table tr td {
   border: 1px solid black;
+}
+
+.day-input-field {
+  width: 30px;
+  border: none;
+  margin: 0;
+
 }

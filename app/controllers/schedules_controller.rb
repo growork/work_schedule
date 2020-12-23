@@ -17,6 +17,8 @@ class SchedulesController < ApplicationController
   # GET /schedules/new
   def new
     @schedule = Schedule.new(date: Date.today.next_month)
+    @schedule.employees_data = helpers.new_schedule_employees_data
+
     @sections = current_user.global_sections
 
     respond_to do |format|
