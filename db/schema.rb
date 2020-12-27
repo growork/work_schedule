@@ -10,18 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_07_154554) do
-
-  create_table "days", force: :cascade do |t|
-    t.integer "hours"
-    t.string "time_interval"
-    t.datetime "date"
-    t.string "type"
-    t.integer "employee_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["employee_id"], name: "index_days_on_employee_id"
-  end
+ActiveRecord::Schema.define(version: 2020_12_27_164518) do
 
   create_table "employees", force: :cascade do |t|
     t.string "name"
@@ -73,7 +62,6 @@ ActiveRecord::Schema.define(version: 2020_12_07_154554) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "days", "employees"
   add_foreign_key "employees", "global_sections"
   add_foreign_key "global_sections", "users"
   add_foreign_key "schedules", "users"
