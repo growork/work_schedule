@@ -1,52 +1,51 @@
-<%= form_with(model: schedule, local: true) do |form| %>
-  <% if schedule.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(schedule.errors.count, "error") %> prohibited this schedule from being saved:</h2>
+<%= form_with model: @schedule, id: "new-schedule-form" do |f| %>
+  <%= f.hidden_field 'date', value: "#{@schedule.date}" %>
 
-      <ul>
-        <% schedule.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+  <table class="schedule-table">
+
+    <% serial_number = 1 %>
+    <% @schedule.employees_data.each do |section, employees| %>
+      <tr>
+        <td rowspan="2">№</td>
+        <td><%= section %></td>
+        <td rowspan="2">Таб. №</td>
+        <% count_days_in_month.times do |day| %>
+          <td><%= Russian.strftime(Date.new(@schedule.date.year, @schedule.date.month, day + 1), '%a') %></td>
         <% end %>
-      </ul>
-    </div>
-  <% end %>
+        <td colspan="2">Кол-во часов</td>
+        <td rowspan="2">Сумма</td>
+      </tr>
 
-  <div class="field">
-    <%= form.label :employees_id %>
-    <%= form.text_area :employees_id %>
-  </div>
+      <tr>
+        <td>Ф.И.О.</td>
+        <% count_days_in_month.times do |day| %>
+          <td><%= day + 1 %></td>
+        <% end %>
+        <td>дневных</td>
+        <td>отпускных</td>
+      </tr>
 
-  <div class="field">
-    <%= form.label :note_time_interval %>
-    <%= form.text_field :note_time_interval %>
-  </div>
-
-  <div class="field">
-    <%= form.label :note_left %>
-    <%= form.text_field :note_left %>
-  </div>
-
-  <div class="field">
-    <%= form.label :note_center %>
-    <%= form.text_field :note_center %>
-  </div>
-
-  <div class="field">
-    <%= form.label :note_right %>
-    <%= form.text_field :note_right %>
-  </div>
-
-  <div class="field">
-    <%= form.label :date %>
-    <%= form.datetime_select :date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+      <% employees.each do |employee_id, employee| %>
+        <tr>
+          <td><%= serial_number %></td>
+          <td>
+            <%= employee[:name] %>
+            <%= f.hidden_field "employees_data[#{section}][#{employee_id}][name]", value: "#{employee[:name]}" %>
+          </td>
+          <td>
+            <%= employee[:service_number] %>
+            <%= f.hidden_field "employees_data[#{section}][#{employee_id}][service_number]", value: "#{employee[:service_number]}" %>
+          </td>
+          <% count_days_in_month.times do |day| %>
+            <td><%= f.text_field "employees_data[#{section}][#{employee_id}][working_days][#{day + 1}][type]", class: "day-input-field" %></td>
+          <% end %>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <% serial_number += 1 %>
+      <% end %>
+    <% end %>
+  </table>
+  <%= f.submit class: "button button-submit" %>
 <% end %>

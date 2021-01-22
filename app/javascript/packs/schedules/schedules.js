@@ -12,8 +12,9 @@ window.addEventListener("load", () => {
             document.querySelector("[data-block-id='schedule-area']").innerHTML = xhr.responseText;
 
         });
-        link.addEventListener("ajax:error", () => {
-            alert('Ошибка соединения!')
+        link.addEventListener("ajax:error", (event) => {
+            const [_data, _status, xhr] = event.detail;
+            document.querySelector("[data-block-id='schedule-area']").innerHTML = xhr.responseText;
         });
     }
 });

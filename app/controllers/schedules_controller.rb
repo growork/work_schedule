@@ -32,12 +32,12 @@ class SchedulesController < ApplicationController
 
   # POST /schedules
   def create
-    @schedule = Schedule.new(schedule_params)
+    @schedule = current_user.schedules.new(schedule_params)
 
     if @schedule.save
       redirect_to @schedule, notice: 'Schedule was successfully created.'
     else
-      render :new
+      redirect_to root_path
     end
   end
 
@@ -64,6 +64,6 @@ class SchedulesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def schedule_params
-      params.require(:schedule).permit(:employees_id, :note_time_interval, :note_left, :note_center, :note_right, :date, :user_id)
+      params.require(:schedule).permit(:note_time_interval, :note_left, :note_center, :note_right, :date, :user_id, employees_data: {})
     end
 end

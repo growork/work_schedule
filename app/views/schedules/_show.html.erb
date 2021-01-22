@@ -1,11 +1,1 @@
-<% @schedule.employees_data.each do |key, value| %>
-  <%= key %>
-  <br>
-  <% value.each do |key, value| %>
-    <%= value[:name] %>
-    <%= value[:service_number] %>
-    <% value[:working_days].each do |key, value| %>
-      <%= "#{value[:hours]}#{value[:type]}" %>
-    <% end %>
-  <% end %>
-<% end %>
+<%= render partial: 'form' %>
