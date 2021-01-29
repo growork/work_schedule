@@ -35,9 +35,14 @@ class SchedulesController < ApplicationController
     @schedule = current_user.schedules.new(schedule_params)
 
     if @schedule.save
-      redirect_to @schedule, notice: 'Schedule was successfully created.'
+
+
+
+      respond_to do |format|
+        format.html { render partial: 'show'}
+      end
     else
-      redirect_to root_path
+      redirect_to root_path, notice: 'Что-то не так'
     end
   end
 

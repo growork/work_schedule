@@ -14,6 +14,7 @@
         <% end %>
         <td colspan="2">Кол-во часов</td>
         <td rowspan="2">Сумма</td>
+        <td rowspan="2">Закреплённая секция</td>
       </tr>
 
       <tr>
@@ -37,8 +38,11 @@
             <%= f.hidden_field "employees_data[#{section}][#{employee_id}][service_number]", value: "#{employee[:service_number]}" %>
           </td>
           <% count_days_in_month.times do |day| %>
-            <td><%= f.text_field "employees_data[#{section}][#{employee_id}][working_days][#{day + 1}][type]", class: "day-input-field" %></td>
+            <td><%= f.text_field "employees_data[#{section}][#{employee_id}][working_days][#{day + 1}][type]", class: "day-input-field", value: "#{@schedule.employees_data["#{section}"]["#{employee_id}"][:working_days]["#{day + 1}"][:type]}" %></td>
           <% end %>
+          <td>
+
+          </td>
           <td></td>
           <td></td>
           <td></td>
@@ -47,5 +51,5 @@
       <% end %>
     <% end %>
   </table>
-  <%= f.submit class: "button button-submit" %>
+  <%= f.submit class: "button button-submit", id: "create-schedule-button" %>
 <% end %>
