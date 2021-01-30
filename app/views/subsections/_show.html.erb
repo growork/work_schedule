@@ -1,0 +1,9 @@
+<td colspan="6">
+  <p>Подсекции:</p>
+  <% @section.subsections.each do |subsection| %>
+    <p>
+      <%= subsection.title %>
+      <%= link_to image_tag('delete_icon.png', class: 'icon'), subsection, method: :delete %>
+    </p>
+  <% end %>
+</td>

@@ -4,6 +4,5 @@ class SettingsController < ApplicationController
   def index
     @global_sections = current_user.global_sections
     @new_global_section = GlobalSection.new
-
   end
 end
