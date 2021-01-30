@@ -36,6 +36,15 @@
             <tr>
               <%= render 'employees/new_employee_form' %>
             </tr>
+            <tr>
+                  <%= render 'subsections/show' %>
+            </tr>
+            <tr>
+              <td colspan="6">
+                <% @subsection = @section.subsections.new %>
+                <%= render 'subsections/new_subsection_form' %>
+              </td>
+            </tr>
             </tbody>
           </table>
         </div>

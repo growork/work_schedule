@@ -1,0 +1,7 @@
+<%= form_with model: @subsection, local: true do |f| %>
+  <%= f.label 'Добавить подсекцию:' %>
+  <%= f.text_field @subsection.title, name: 'subsection[title]' %>
+  <%= f.hidden_field @subsection.global_section_id, name: 'subsection[global_section_id]', value: "#{@section.id}" %>
+
+  <%= f.submit %>
+<% end %>

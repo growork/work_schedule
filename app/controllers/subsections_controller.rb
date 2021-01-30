@@ -24,9 +24,9 @@ class SubsectionsController < ApplicationController
     @subsection = Subsection.new(subsection_params)
 
     if @subsection.save
-      redirect_to @subsection, notice: 'Subsection was successfully created.'
+      redirect_to settings_url, notice: 'Подсекция создана.'
     else
-      render :new
+      redirect_to settings_url, alert: 'Что-то пошло не так'
     end
   end
 
@@ -42,7 +42,7 @@ class SubsectionsController < ApplicationController
   # DELETE /subsections/1
   def destroy
     @subsection.destroy
-    redirect_to subsections_url, notice: 'Subsection was successfully destroyed.'
+    redirect_to settings_url, notice: 'Подсекция удалена.'
   end
 
   private
@@ -53,6 +53,6 @@ class SubsectionsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def subsection_params
-      params.require(:subsection).permit(:name)
+      params.require(:subsection).permit(:title, :global_section_id)
     end
 end
