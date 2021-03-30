@@ -1,0 +1,5 @@
+<%= render partial: 'menu' %>
+<div class="schedule-area" data-block-id="schedule-area">
+  <h3>Новый график на <%= @schedule.date.strftime('%m.%Y') %></h3>
+  <%= render partial: 'form' %>
+</div>

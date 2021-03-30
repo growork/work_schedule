@@ -1,33 +1,22 @@
 class SchedulesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_schedule, only: [:show, :edit, :update, :destroy]
+  before_action :set_schedules
+  before_action :set_schedule, only: [:edit, :update, :destroy]
 
-  # GET /schedules
-  def index
-    @schedules = current_user.schedules.all
-  end
 
-  # GET /schedules/1
-  def show
-    respond_to do |format|
-      format.html { render partial: 'show'}
-    end
-  end
 
   # GET /schedules/new
   def new
     @schedule = Schedule.new(date: Date.today.next_month)
     @schedule.employees_data = helpers.new_schedule_employees_data
-
     @sections = current_user.global_sections
 
-    respond_to do |format|
-      format.html { render partial: 'new'}
-    end
+    render 'new'
   end
 
   # GET /schedules/1/edit
   def edit
+    render 'edit'
   end
 
   # POST /schedules
@@ -35,14 +24,9 @@ class SchedulesController < ApplicationController
     @schedule = current_user.schedules.new(schedule_params)
 
     if @schedule.save
-
-
-
-      respond_to do |format|
-        format.html { render partial: 'show'}
-      end
+      redirect_to edit_schedule_path(@schedule)
     else
-      redirect_to root_path, notice: 'Что-то не так'
+      render :new, alert: 'Что-то не так'
     end
   end
 
@@ -51,7 +35,7 @@ class SchedulesController < ApplicationController
     if @schedule.update(schedule_params)
       redirect_to @schedule, notice: 'Schedule was successfully updated.'
     else
-      render :edit
+      render partial: 'edit'
     end
   end
 
@@ -62,13 +46,27 @@ class SchedulesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_schedule
-      @schedule = current_user.schedules.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_schedule
+    @schedule = current_user.schedules.find(params[:id])
+  end
 
-    # Only allow a trusted parameter "white list" through.
-    def schedule_params
-      params.require(:schedule).permit(:note_time_interval, :note_left, :note_center, :note_right, :date, :user_id, employees_data: {})
+  def set_schedules
+    @schedules = current_user.schedules.all
+  end
+
+  # Разрешает определённые параметры и изменяет их, разделяя тип смены и часы
+  def schedule_params
+    params.require(:schedule).permit(:note_time_interval, :note_left, :note_center, :note_right, :date, :user_id, employees_data: {}).tap do |schedule_params|
+      schedule_params[:employees_data].each do |section, employees|
+        employees.each do |employee_id, employee|
+          employee[:working_days].each do |day, value|
+            value[:hours] = /\w*/.match(value[:type_and_hour]).to_s
+            value[:type] = /[а-я]/.match(value[:type_and_hour]).to_s
+            value.delete(:type_and_hour)
+          end
+        end
+      end
     end
+  end
 end

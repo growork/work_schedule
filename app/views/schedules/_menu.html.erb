@@ -1,0 +1,11 @@
+<div class="schedule-menu">
+  <div class="schedule-menu-header">
+    <h4>ГРАФИКИ</h4>
+  </div>
+  <% @schedules.each do |schedule| %>
+    <div class="schedule-menu-element">
+      <%= link_to schedule.date.strftime("%m.%Y"), edit_schedule_path(schedule), id: "edit-schedule-link-#{schedule.id}" %>
+    </div>
+  <% end %>
+  <%= link_to "Создать график", new_schedule_path, id: "new-schedule-link" %>
+</div>

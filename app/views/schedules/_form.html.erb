@@ -1,55 +1,55 @@
-<%= form_with model: @schedule, id: "new-schedule-form" do |f| %>
-  <%= f.hidden_field 'date', value: "#{@schedule.date}" %>
-
-  <table class="schedule-table">
-
-    <% serial_number = 1 %>
-    <% @schedule.employees_data.each do |section, employees| %>
-      <tr>
-        <td rowspan="2">№</td>
-        <td><%= section %></td>
-        <td rowspan="2">Таб. №</td>
-        <% count_days_in_month.times do |day| %>
-          <td><%= Russian.strftime(Date.new(@schedule.date.year, @schedule.date.month, day + 1), '%a') %></td>
-        <% end %>
-        <td colspan="2">Кол-во часов</td>
-        <td rowspan="2">Сумма</td>
-        <td rowspan="2">Закреплённая секция</td>
-      </tr>
-
-      <tr>
-        <td>Ф.И.О.</td>
-        <% count_days_in_month.times do |day| %>
-          <td><%= day + 1 %></td>
-        <% end %>
-        <td>дневных</td>
-        <td>отпускных</td>
-      </tr>
-
-      <% employees.each do |employee_id, employee| %>
+  <%= form_with model: @schedule, id: "new-schedule-form", local: true do |f| %>
+    <%= f.hidden_field 'date', value: "#{@schedule.date}" %>
+    <table class="schedule-table">
+      <% serial_number = 1 %>
+      <% @schedule.employees_data.each do |section, employees| %>
         <tr>
-          <td><%= serial_number %></td>
-          <td>
-            <%= employee[:name] %>
-            <%= f.hidden_field "employees_data[#{section}][#{employee_id}][name]", value: "#{employee[:name]}" %>
-          </td>
-          <td>
-            <%= employee[:service_number] %>
-            <%= f.hidden_field "employees_data[#{section}][#{employee_id}][service_number]", value: "#{employee[:service_number]}" %>
-          </td>
+          <td rowspan="2">№</td>
+          <td><%= section %></td>
+          <td rowspan="2">Таб. №</td>
           <% count_days_in_month.times do |day| %>
-            <td><%= f.text_field "employees_data[#{section}][#{employee_id}][working_days][#{day + 1}][type]", class: "day-input-field", value: "#{@schedule.employees_data["#{section}"]["#{employee_id}"][:working_days]["#{day + 1}"][:type]}" %></td>
+            <td><%= Russian.strftime(Date.new(@schedule.date.year, @schedule.date.month, day + 1), '%a') %></td>
           <% end %>
-          <td>
-
-          </td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td colspan="2">Кол-во часов</td>
+          <td rowspan="2">Сумма</td>
+          <td rowspan="2">Закреплённая секция</td>
         </tr>
-        <% serial_number += 1 %>
+
+        <tr>
+          <td>Ф.И.О.</td>
+          <% count_days_in_month.times do |day| %>
+            <td><%= day + 1 %></td>
+          <% end %>
+          <td>дневных</td>
+          <td>отпускных</td>
+        </tr>
+
+        <% employees.each do |employee_id, employee| %>
+          <tr>
+            <td><%= serial_number %></td>
+            <td>
+              <%= employee[:name] %>
+              <%= f.hidden_field "employees_data[#{section}][#{employee_id}][name]", value: "#{employee[:name]}" %>
+            </td>
+            <td>
+              <%= employee[:service_number] %>
+              <%= f.hidden_field "employees_data[#{section}][#{employee_id}][service_number]", value: "#{employee[:service_number]}" %>
+            </td>
+            <% count_days_in_month.times do |day| %>
+              <td>
+                <%= f.text_field "employees_data[#{section}][#{employee_id}][working_days][#{day + 1}][type_and_hour]", class: "day-input-field", value: "#{@schedule.employees_data["#{section}"]["#{employee_id}"][:working_days]["#{day + 1}"][:hours]}" + "#{@schedule.employees_data["#{section}"]["#{employee_id}"][:working_days]["#{day + 1}"][:type]}" %>
+              </td>
+            <% end %>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+              <%= f.select "employees_data[#{section}][#{employee_id}][subsection]", subsections_for_employee(employee_id), selected: employee["subsection"] || '' %>
+            </td>
+          </tr>
+          <% serial_number += 1 %>
+        <% end %>
       <% end %>
-    <% end %>
-  </table>
-  <%= f.submit class: "button button-submit", id: "create-schedule-button" %>
-<% end %>
+    </table>
+    <%= f.submit class: "button button-submit", id: "create-schedule-button" %>
+  <% end %>

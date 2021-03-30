@@ -1,17 +1,5 @@
-<div class="schedule-wrapper">
-  <div class="schedule-menu">
-    <div class="schedule-menu-header">
-      <h4>ГРАФИКИ</h4>
-    </div>
-    <% @schedules.each do |schedule| %>
-      <div class="schedule-menu-element">
-        <%= link_to schedule.date.strftime("%m.%Y"), schedule, id: "show-schedule-link-#{schedule.id}", remote: true %>
-      </div>
-    <% end %>
-    <%= link_to "Создать график", new_schedule_path, id: "new-schedule-link", remote: true %>
-  </div>
-  <div class="schedule-area" data-block-id="schedule-area">
-    <p>123</p>
+<%= render partial: 'menu' %>
 
-  </div>
+<div class="schedule-area" data-block-id="schedule-area">
+  <p>123</p>
 </div>

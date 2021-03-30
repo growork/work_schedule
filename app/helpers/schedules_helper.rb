@@ -20,13 +20,20 @@ module SchedulesHelper
 
         count_days_in_month.times do |day|
           employees_data["#{section.title}"]["#{employee.id}"][:working_days]["#{day+1}"] = {
-              hours: "",
-              type: ""
+              hours: "11",
+              type: "у"
           }
         end
       end
     end
 
     employees_data
+  end
+
+  # Добавляет пустую строку в начало выпадающего списка с подсекциями
+  # Метод map возвращает массив с подсекциями и метод unshift добавляет в его
+  # начало пустую строку
+  def subsections_for_employee(employee_id)
+    Employee.find(employee_id).global_section.subsections.map {|subsection| subsection.title}.unshift('')
   end
 end

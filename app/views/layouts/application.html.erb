@@ -21,15 +21,22 @@
 
   <%= render 'layouts/navbar' %>
 
+  <% # Если текущий контроллер - schedules, оборачиваем в div с классом schedule-wrapper %>
+  <% # Необходимо для флексов при работе с графиком %>
+  <% if controller_name == 'schedules' %>
+    <div class="schedule-wrapper">
+      <%= yield %>
+    </div>
+  <% else %>
+    <% if flash.notice %>
+      <div id="notice" class="alert alert-success"><%= notice %></div>
+    <% elsif flash.alert %>
+      <div id="alert" class="alert alert-danger"><%= alert %></div>
+    <% end %>
 
-  <% if flash.notice %>
-    <div id="notice" class="alert alert-success"><%= notice %></div>
-  <% elsif flash.alert %>
-    <div id="alert" class="alert alert-danger"><%= alert %></div>
+    <%= yield %>
+
   <% end %>
-
-  <%= yield %>
-
 </div>
 </body>
 </html>
