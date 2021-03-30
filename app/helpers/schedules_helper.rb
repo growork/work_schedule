@@ -34,6 +34,6 @@ module SchedulesHelper
   # Метод map возвращает массив с подсекциями и метод unshift добавляет в его
   # начало пустую строку
   def subsections_for_employee(employee_id)
-    Employee.find(employee_id).global_section.subsections.map {|subsection| subsection.title}.unshift('')
+    Employee.get_employee(employee_id).global_section.subsections.map {|subsection| subsection.title}.unshift('')
   end
 end
