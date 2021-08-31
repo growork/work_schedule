@@ -1,9 +1,4 @@
 module SchedulesHelper
-  # Возвращает количество дней в месяце
-  def count_days_in_month
-    Date.new(@schedule.date.year, @schedule.date.month, -1).day
-  end
-
   # Устанавливается основная структура хэша
   def new_schedule_employees_data
     employees_data = {}
@@ -18,10 +13,10 @@ module SchedulesHelper
             working_days: {}
         }
 
-        count_days_in_month.times do |day|
+        @schedule.count_days_in_month.times do |day|
           employees_data["#{section.title}"]["#{employee.id}"][:working_days]["#{day+1}"] = {
-              hours: "11",
-              type: "у"
+              hours: "",
+              type: ""
           }
         end
       end

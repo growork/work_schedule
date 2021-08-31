@@ -7,7 +7,7 @@
           <td rowspan="2">№</td>
           <td><%= section %></td>
           <td rowspan="2">Таб. №</td>
-          <% count_days_in_month.times do |day| %>
+          <% @schedule.count_days_in_month.times do |day| %>
             <td><%= Russian.strftime(Date.new(@schedule.date.year, @schedule.date.month, day + 1), '%a') %></td>
           <% end %>
           <td colspan="2">Кол-во часов</td>
@@ -17,7 +17,7 @@
 
         <tr>
           <td>Ф.И.О.</td>
-          <% count_days_in_month.times do |day| %>
+          <% @schedule.count_days_in_month.times do |day| %>
             <td><%= day + 1 %></td>
           <% end %>
           <td>дневных</td>
@@ -35,7 +35,7 @@
               <%= employee[:service_number] %>
               <%= f.hidden_field "employees_data[#{section}][#{employee_id}][service_number]", value: "#{employee[:service_number]}" %>
             </td>
-            <% count_days_in_month.times do |day| %>
+            <% @schedule.count_days_in_month.times do |day| %>
               <td>
                 <%= f.text_field "employees_data[#{section}][#{employee_id}][working_days][#{day + 1}][type_and_hour]", class: "day-input-field", value: "#{@schedule.employees_data["#{section}"]["#{employee_id}"][:working_days]["#{day + 1}"][:hours]}" + "#{@schedule.employees_data["#{section}"]["#{employee_id}"][:working_days]["#{day + 1}"][:type]}" %>
               </td>

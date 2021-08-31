@@ -14,6 +14,10 @@ class SchedulesController < ApplicationController
     render 'new'
   end
 
+  def show
+    redirect_to edit_schedule_url
+  end
+
   # GET /schedules/1/edit
   def edit
     render 'edit'
@@ -61,8 +65,8 @@ class SchedulesController < ApplicationController
       schedule_params[:employees_data].each do |section, employees|
         employees.each do |employee_id, employee|
           employee[:working_days].each do |day, value|
-            value[:hours] = /\w*/.match(value[:type_and_hour]).to_s
-            value[:type] = /[а-я]/.match(value[:type_and_hour]).to_s
+            value[:hours] = /\d+/.match(value[:type_and_hour]).to_s
+            value[:type] = /[а-яА-Я]+/.match(value[:type_and_hour]).to_s
             value.delete(:type_and_hour)
           end
         end
